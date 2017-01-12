@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-
 import com.business.rrc.jniencrypt.Encrypt;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         Log.e("test1", md51);
         Log.e("test1", md52);
         Log.e("test1", md51.equals(md52) + "");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("sdf", "2345");
+        map.put("ahn", "234");
+        map.put("sg", "567");
+        map.put("iuyh", "7867");
+        map.put("awefwrev", "3254");
+        map.put("vefvaeve", "787");
+        map.put("VEVE", "2345353");
+        Log.e("test1", Encrypt.digest(map));
     }
 
 

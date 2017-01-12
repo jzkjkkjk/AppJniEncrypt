@@ -9,6 +9,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        consumerProguardFiles 'proguard-rules.pro'
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -16,38 +17,39 @@ android {
         }
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file("../salesorder.jks")
-//            storePassword "yanfei2.0"
-//            keyAlias "salersorder"
-//            keyPassword "gaopinzhiche"
-//        }
-//    }
-//
-//    buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
-//            libraryVariants.all { variant ->
-//                variant.outputs.each { output ->
-//                    def outputFile = output.outputFile
-//                    if (outputFile != null && outputFile.name.endsWith('.aar')) {
-//                        def fileName = "jni-encrypt-${defaultConfig.versionName}.aar"
-//                        output.outputFile = new File(outputFile.parent, fileName)
-//                    }
-//                }
-//            }
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file("../salesorder.jks")
+            storePassword "yanfei2.0"
+            keyAlias "salersorder"
+            keyPassword "gaopinzhiche"
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            libraryVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.aar')) {
+                        def fileName = "jni-encrypt-${defaultConfig.versionName}.aar"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
+
+//    buildTypes {
+//        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
 
     externalNativeBuild {
         cmake {

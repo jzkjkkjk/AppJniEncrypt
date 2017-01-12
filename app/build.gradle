@@ -9,7 +9,6 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "armeabi", "arm64-v8a", "armeabi-v7a", "x86"
         }
@@ -23,14 +22,14 @@ android {
 }
 
 dependencies {
-    compile(name:'jniencrypt-release', ext:'aar')
-    //compile project(':jniencrypt')
+    //compile(name:'jni-encrypt-1.0', ext:'aar')
+    compile project(':jniencrypt')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.1.0'
 }
 
 repositories {
     flatDir {
-        dirs 'libs' //this way we can find the .aar file in libs folder
+        dirs 'libs'
     }
 }
