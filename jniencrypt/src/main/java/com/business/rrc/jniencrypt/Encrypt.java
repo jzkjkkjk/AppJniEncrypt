@@ -21,6 +21,8 @@ public class Encrypt {
         System.loadLibrary("native-lib");
     }
 
+    private Encrypt(){}
+
     public static native String signature();
 
     public static native String digest(String content);
